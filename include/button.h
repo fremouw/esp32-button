@@ -6,6 +6,8 @@
 #define BUTTON_DOWN (1)
 #define BUTTON_UP (2)
 
+#define LONG_PRESS_DURATION (CONFIG_ESP_BUTTON_LONG_PRESS_DURATION)
+
 typedef struct {
 	uint8_t pin;
     uint8_t event;

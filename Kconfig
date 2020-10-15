@@ -1,0 +1,9 @@
+menu "ESP32 Button Configuration"
+
+config ESP_BUTTON_LONG_PRESS_DURATION
+    int "Long press duration"
+    default 2000
+    help
+	When a button is pressed down for ESP_BUTTON_LONG_PRESS_DURATION ms its counted as a long press. 
+
+endmenu
