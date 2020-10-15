@@ -9,6 +9,7 @@ extern "C" {
 
 #define BUTTON_DOWN (1)
 #define BUTTON_UP (2)
+#define BUTTON_LONG (3)
 
 #define LONG_PRESS_DURATION (CONFIG_ESP_BUTTON_LONG_PRESS_DURATION)
 

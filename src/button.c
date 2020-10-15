@@ -81,7 +81,7 @@ static void button_task(void *pvParameter)
                     update_button(&debounce[idx]);
                 }
                 ESP_LOGI(TAG, "%d UP", debounce[idx].pin);
-                send_event(debounce[idx], BUTTON_UP);
+                send_event(debounce[idx], BUTTON_LONG);
             } else if (button_down(&debounce[idx])) {
                 debounce[idx].down_time = millis();
                 ESP_LOGI(TAG, "%d DOWN", debounce[idx].pin);
