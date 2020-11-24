@@ -13,6 +13,8 @@
 
 #define TAG "BUTTON"
 
+#define MASK 0b1111000000111111
+
 typedef struct {
 	uint8_t pin;
     bool inverted;
@@ -28,7 +30,6 @@ static void update_button(debounce_t *d) {
     d->history = (d->history << 1) | gpio_get_level(d->pin);
 }
 
-#define MASK   0b1111000000111111
 static bool button_rose(debounce_t *d) {
     if ((d->history & MASK) == 0b0000000000111111) {
         d->history = 0xffff;
@@ -36,6 +37,7 @@ static bool button_rose(debounce_t *d) {
     }
     return 0;
 }
+
 static bool button_fell(debounce_t *d) {
     if ((d->history & MASK) == 0b1111000000000000) {
         d->history = 0x0000;
@@ -43,10 +45,12 @@ static bool button_fell(debounce_t *d) {
     }
     return 0;
 }
+
 static bool button_down(debounce_t *d) {
     if (d->inverted) return button_fell(d);
     return button_rose(d);
 }
+
 static bool button_up(debounce_t *d) {
     if (d->inverted) return button_rose(d);
     return button_fell(d);
@@ -98,7 +102,6 @@ static void button_task(void *pvParameter) {
 QueueHandle_t button_init(unsigned long long pin_select) {
     return pulled_button_init(pin_select, GPIO_FLOATING);
 }
-
 
 QueueHandle_t pulled_button_init(unsigned long long pin_select, gpio_pull_mode_t pull_mode) {
     if (pin_count != -1) {
