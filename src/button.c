@@ -64,8 +64,7 @@ static void send_event(debounce_t db, int ev) {
     xQueueSend(queue, &event, portMAX_DELAY);
 }
 
-static void button_task(void *pvParameter)
-{
+static void button_task(void *pvParameter) {
     while (1) {
         for (int idx=0; idx<pin_count; idx++) {
             update_button(&debounce[idx]);
@@ -101,8 +100,7 @@ QueueHandle_t button_init(unsigned long long pin_select) {
 }
 
 
-QueueHandle_t pulled_button_init(unsigned long long pin_select, gpio_pull_mode_t pull_mode)
-{
+QueueHandle_t pulled_button_init(unsigned long long pin_select, gpio_pull_mode_t pull_mode) {
     if (pin_count != -1) {
         ESP_LOGI(TAG, "Already initialized");
         return NULL;
