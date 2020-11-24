@@ -143,7 +143,7 @@ QueueHandle_t pulled_button_init(unsigned long long pin_select, gpio_pull_mode_t
     }
 
     // Spawn a task to monitor the pins
-    xTaskCreate(&button_task, "button_task", 4096, NULL, 10, NULL);
+    xTaskCreate(&button_task, "button_task", 2048, NULL, 10, NULL);
 
     return queue;
 }
