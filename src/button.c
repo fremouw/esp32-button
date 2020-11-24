@@ -22,9 +22,9 @@ typedef struct {
     uint64_t down_time;
 } debounce_t;
 
-int pin_count = -1;
-debounce_t * debounce;
-QueueHandle_t queue;
+static int pin_count = -1;
+static debounce_t * debounce;
+static QueueHandle_t queue;
 
 static void update_button(debounce_t *d) {
     d->history = (d->history << 1) | gpio_get_level(d->pin);
