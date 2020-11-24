@@ -80,7 +80,7 @@ static void button_task(void *pvParameter) {
                     if (!i) send_event(debounce[idx], BUTTON_DOWN);
                     i++;
                     if (i>=5) i=0;
-                    vTaskDelay(10/portTICK_PERIOD_MS);
+                    vTaskDelay(pdMS_TO_TICKS(10));
                     update_button(&debounce[idx]);
                 }
                 ESP_LOGI(TAG, "%d UP", debounce[idx].pin);
@@ -95,7 +95,7 @@ static void button_task(void *pvParameter) {
                 send_event(debounce[idx], BUTTON_UP);
             }
         }
-        vTaskDelay(10/portTICK_PERIOD_MS);
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
